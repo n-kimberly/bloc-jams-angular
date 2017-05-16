@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
+
 <head lang="en">
+
     <meta charset="UTF-8">
     <title>Bloc Jams Angular</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,12 +14,28 @@
     <link rel="stylesheet" type="text/css" href="styles/collection.css">
     <link rel="stylesheet" type="text/css" href="styles/album.css">
     <link rel="stylesheet" type="text/css" href="styles/player_bar.css">
+
 </head>
+
 <body>
-    {{ 2 + 2 }}
+
+    <navbar>
+
+        <a href="index.html" class="logo">
+            <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo">
+        </a>
+
+        <links-container>
+            <a href="album.html" class="navbar-link">Sample Album</a>
+        </links-container>
+
+    </navbar>
+
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
     <script src="/scripts/app.js"></script>
+
 </body>
+
 <!-- Angular directive used to bootstrap the entire document-->
 <!-- Activates blocJams module -->
 </html ng-app = "blocjams">
