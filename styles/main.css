@@ -1,0 +1,118 @@
+/* main.css should be used for global tyles. It is good practice to organize styles into multiple files, each with a specific purpose */
+
+*, *::before, *::after {                    /* '*' is a universal selector. :before and :after create pseudo elements for first and last child */
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+ .container {
+     margin: 0 auto;                        /* horizontal centering */
+     max-width: 64rem;                      /* ensures that even in wide screen mode, the cell width is maintained */
+ }
+
+ .container.narrow {
+     max-width: 56rem;
+ }
+
+ @media (min-width: 640px) {                /* Medium and small screens: 640px i.e. smaller tablets and bigger phones */
+     html {font-size: 112%;}                /* rem based on default font, around 16px, so 100%+ for better legibility */
+
+     .column {                              /* making a grid system */
+         float: left;                       /* ensures that every element with the volumn class to stick to the left */
+         padding-left: 1rem;                /* add padding to keep some aesthetic space between grid elements */
+         padding-right: 1rem;
+     }
+     .column.full { width: 100%; }
+     .column.two-thirds { width: 66.7%; }
+     .column.half { width: 50%; }
+     .column.third { width: 33.3%; }
+     .column.fourth { width: 25%; }
+     .column.flow-opposite { float: right; }
+ }
+
+ @media (min-width: 1024px) {               /* Large screens: 1024px, such as for laptops and tablets */
+     html {font-size: 120%;}                /* Since rem is based on default browser font, around 16px, we want 100%+ for better legibility */
+
+     .column {                              /* making a grid system */
+         float: left;                       /* ensures that every element with the volumn class to stick to the left */
+         padding-left: 1rem;                /* add padding to keep some aesthetic space between grid elements */
+         padding-right: 1rem;
+     }
+     .column.full { width: 100%; }
+     .column.two-thirds { width: 66.7%; }
+     .column.half { width: 50%; }
+     .column.third { width: 33.3%; }
+     .column.fourth { width: 25%; }
+     .column.flow-opposite { float: right; }
+ }
+
+html {
+    height: 100%;                           /* html to take up 100% of browser window */
+    font-size: 100%;                        /* font to be 100% of default */
+}
+
+body {
+    background-image: url(../assets/images/blurred_backgrounds/blur_bg_3.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center center;
+    background-size: cover;
+    font-family: 'Open Sans', sans-serif;   /* sets our font to the "Open Sans" typeface */
+    color: white;                           /* sets our text color to white */
+    min-height: 100%;                       /* says the height of the must be at minimum 100% of the browser window */
+    padding-bottom: 200px;
+}
+
+.navbar {
+    position: relative;
+    padding: 0.5rem;                        /* provides 1/2 of a root em (width of letter m) space inside navbar */
+    background-color: rgba(101,18,95, 0.5); /* alpha is opacity. */
+    z-index: 1;                             /* elements with larger z-index values sit above lesser ones. */
+}
+
+.navbar .logo {                             /* under navbar class is nested class element .logo (descendant selector) */
+    position: relative;                     /* with relative you do have access to offset properties */
+    left: 2rem;                             /* indents flow 2 root em's from the left */
+    cursor: pointer;                        /* produces the finger-pointer icon when you hover over the logo */
+ }
+
+ .navbar .links-container {
+     display: table;
+     position: absolute;
+     top: 0;
+     right: 0;
+     height: 100px;
+     color: white;
+     text-decoration: none;                 /* by default, anchor tags (<a>) are decorated with an underline */
+ }
+
+.links-container .navbar-link {
+     display: table-cell;
+     position: relative;
+     height: 100%;
+     padding-left: 1rem;
+     padding-right: 1rem;
+     vertical-align: middle;                /* middle value centers our nav links vertically within their containers. */
+     color: white;
+     font-size: 0.625rem;
+     letter-spacing: 0.05rem;
+     font-weight: 700;
+     text-transform: uppercase;
+     text-decoration: none;
+     cursor: pointer;
+ }
+
+.links-container .navbar-link:hover {
+     color: rgb(233,50,117);                /* when hovering over collection link, it changes to the color specified */
+ }
+
+.clearfix::before,
+.clearfix::after {
+   content: " ";
+   display: table;
+}
+
+.clearfix::after {
+   clear: both;
+}
