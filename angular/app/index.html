@@ -1,41 +1,43 @@
 <!DOCTYPE html>
-<html>
 
-<head lang="en">
+<html ng-app='blocJams'>
 
-    <meta charset="UTF-8">
-    <title>Bloc Jams Angular</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300">
-    <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <link rel="stylesheet" type="text/css" href="styles/normalize.css">
-    <link rel="stylesheet" type="text/css" href="styles/main.css">
-    <link rel="stylesheet" type="text/css" href="styles/landing.css">
-    <link rel="stylesheet" type="text/css" href="styles/collection.css">
-    <link rel="stylesheet" type="text/css" href="styles/album.css">
-    <link rel="stylesheet" type="text/css" href="styles/player_bar.css">
+    <head lang='en'>
 
-</head>
+        <meta charset='UTF-8'>
+        <title>Bloc Jams Angular</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Open+Sans:400,800,600,700,300'>
+        <link rel='stylesheet' type='text/css' href='http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css'>
+        <link rel='stylesheet' type='text/css' href='styles/normalize.css'>
+        <link rel='stylesheet' type='text/css' href='styles/main.css'>
+        <link rel='stylesheet' type='text/css' href='styles/landing.css'>
+        <link rel='stylesheet' type='text/css' href='styles/collection.css'>
+        <link rel='stylesheet' type='text/css' href='styles/album.css'>
+        <link rel='stylesheet' type='text/css' href='styles/player_bar.css'>
 
-<body>
+    </head>
 
-    <navbar>
+    <body>
 
-        <a href="index.html" class="logo">
-            <img src="assets/images/bloc_jams_logo.png" alt="bloc jams logo">
-        </a>
+        <nav class='navbar'>
 
-        <links-container>
-            <a href="album.html" class="navbar-link">Sample Album</a>
-        </links-container>
+            <a ui-sref='landing' class='logo'>
+                <img src='assets/images/bloc_jams_logo.png' alt='bloc jams logo'>
+            </a>
 
-    </navbar>
+            <div class='links-container'>
+                <a ui-sref='collection' class='navbar-link'>collection</a>
+            </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-    <script src="/scripts/app.js"></script>
+        </nav>
 
-</body>
+        <ui-view></ui-view>
 
-<!-- Angular directive used to bootstrap the entire document-->
-<!-- Activates blocJams module -->
-</html ng-app = "blocjams">
+        <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js'></script>
+        <script src='/scripts/app.js'></script>
+
+    </body>
+
+</html>
