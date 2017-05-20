@@ -3,14 +3,12 @@ var i, albumPicasso;
 
 (function () {
     "use strict";
-    function CollectionCtrl() {
-        this.albums = [];
-        for (i = 0; i < 12; i += 1) {
-            this.albums.push(angular.copy(albumPicasso));
-        }
+
+    function CollectionCtrl(Fixtures) { // inject our custom Fixtures service
+        this.albums = Fixtures.getCollection(12); // numberOfAlbums = 12
     }
 
     angular
         .module('blocJams')
-        .controller('CollectionCtrl', CollectionCtrl);
+        .controller('CollectionCtrl', ['Fixtures', CollectionCtrl]);
 }());

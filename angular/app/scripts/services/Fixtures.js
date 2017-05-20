@@ -3,7 +3,9 @@
 /*global angular*/
 var Fixtures,
     albumPicasso,
-    albumMarconi;
+    albumMarconi,
+    i,
+    collection;
 
 (function () {
     "use strict";
@@ -42,6 +44,14 @@ var Fixtures,
 
         Fixtures.getAlbum = function () {
             return albumPicasso;
+        };
+
+        Fixtures.getCollection = function (numberOfAlbums) {
+            collection = [];
+            for (i = 0; i < numberOfAlbums; i += 1) {
+                collection.push(albumPicasso);
+            }
+            return collection;
         };
 
         return Fixtures; // empty object provides properties and methods to other parts of ng app
