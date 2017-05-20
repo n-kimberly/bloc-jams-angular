@@ -1,4 +1,7 @@
+/*global angular*/
+
 (function () {
+    "use strict";
     function config($stateProvider, $locationProvider) {
         $locationProvider
             .html5Mode({
@@ -9,7 +12,7 @@
         $stateProvider
             .state('landing', {
                 url: '/',
-                controller: 'LandingCtrl as landing',
+                controller: 'LandingCtrl as landing', // controller defined by 'landing' alias
                 templateUrl: '/templates/landing.html'
             })
             .state('album', {
@@ -26,4 +29,4 @@
     angular
         .module('blocJams', ['ui.router'])
         .config(config);
-})();
+}());

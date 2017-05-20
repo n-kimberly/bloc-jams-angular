@@ -1,10 +1,13 @@
+/*global angular*/
+var albumPicasso;
+
 (function () {
-    function AlbumCtrl() {
-        this.albumData = angular.copy(albumPicasso);
-        //this.songs = this.albumData.songs;
+    "use strict";
+    function AlbumCtrl(Fixtures) {  // inject our custom Fixtures service
+        this.albumData = Fixtures.getAlbum(); // access getAlbum() method
     }
 
     angular
         .module('blocJams')
-        .controller('AlbumCtrl', AlbumCtrl);
-})();
+        .controller('AlbumCtrl', ['Fixtures', AlbumCtrl]); // define as dependency
+}());
