@@ -20,11 +20,11 @@
 
                 <!-- show play button when song isn't playing and mouse is hovering -->
                 <!-- if mouse clicks, play song  -->
-                <a class='album-song-button' ng-show='!song.playing && hovered' ng-click='album.SongPlayer.play(song)'><span class='ion-play'></span></a>
+                <a class='album-song-button' ng-show='hovered && !song.playing' ng-click='album.songPlayer.play(song)'><span class='ion-play'></span></a>
 
                 <!-- if song is playing, show pause button -->
                 <!-- if mouse clicks, pause song  -->
-                <a class='album-song-button' ng-show='song.playing' ng-click='album.SongPlayer.pause(song)'><span class='ion-pause'></span></a>
+                <a class='album-song-button' ng-show='song.playing' ng-click='album.songPlayer.pause(song)'><span class='ion-pause'></span></a>
 
             </td>
 
@@ -36,4 +36,4 @@
      </table>
  </main>
 
- <ng-include src="'/templates/player_bar.html'"></ng-include>
+ <ng-include src='/templates/player_bar.html'></ng-include>
