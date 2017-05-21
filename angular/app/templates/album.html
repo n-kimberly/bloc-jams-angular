@@ -14,9 +14,18 @@
          <tr class='album-view-song-item' ng-repeat='song in album.albumData.songs' ng-mouseover='hovered=true' ng-mouseleave='hovered=false'>
 
              <td class='song-item-number'>
-                <span ng-show='!playing && !hovered'> {{ ($index + 1) }} </span>
-                <a class='album-song-button' ng-show='!playing && hovered'><span class='ion-play'></span></a>
-                <a class='album-song-button' ng-show='playing'><span class='ion-pause'></span></a>
+
+                 <!-- show song title when song isn't playing and mouse isn't hovering  -->
+                <span ng-show='!song.playing && !hovered'> {{ ($index + 1) }} </span>
+
+                <!-- show play button when song isn't playing and mouse is hovering -->
+                <!-- if mouse clicks, play song  -->
+                <a class='album-song-button' ng-show='!song.playing && hovered' ng-click='album.SongPlayer.play(song)'><span class='ion-play'></span></a>
+
+                <!-- if song is playing, show pause button -->
+                <!-- if mouse clicks, pause song  -->
+                <a class='album-song-button' ng-show='song.playing' ng-click='album.SongPlayer.pause(song)'><span class='ion-pause'></span></a>
+
             </td>
 
              <td class='song-item-title'> {{ song.title }} </td>
