@@ -1,5 +1,10 @@
 // Create service using factory style declaration to produce instance of Fixtures.
 
+// Private attributes:      albumPicasso, albumMarconi
+// Private functions:
+// Public attributes:
+// Public methods:          Fixtures.getAlbum, Fixtures.getCollection
+
 /*global angular*/
 var Fixtures,
     albumPicasso,

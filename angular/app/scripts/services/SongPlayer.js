@@ -1,56 +1,58 @@
 // Create service using factory style declaration to produce instance of SongPlayer.
-
-// Private attributes:      currentSong, currentBuzzObject
+// Method:                  SongPlayer
+// Private attributes:      currentAlbum, currentBuzzObject
 // Private functions:       setSong, playSong
-// Public attributes:
+// Public attributes:       SongPlayer.currentSong
 // Public methods:          SongPlayer.play, SongPlayer.pause
 
 /*global angular*/
 /*global buzz*/
 
 var SongPlayer,
-    currentSong,
+    currentAlbum,
     currentBuzzObject,
     setSong,
-    playSong;
+    playSong,
+    getSongIndex,
+    currentSongIndex,
+    song;
 
 (function () {
     'use strict';
-    function SongPlayer() {
-        SongPlayer = {};
+    function SongPlayer(Fixtures) {
 
+        SongPlayer = {};
         /**
-        * @desc holds current song, or is null
+        * @desc current album placeholder (private attribute)
         * @type {Object}
         */
-        currentSong = null;
+        currentAlbum = Fixtures.getAlbum();
+
         /**
-        * @desc Buzz object audio file
+        * @desc Buzz object audio file (private attribute)
         * @type {Object}
         */
         currentBuzzObject = null;
 
         /**
-        * @function setSong
+        * @function setSong (private function)
         * @desc Stops currently playing song and loads new audio file as currentBuzzObject
         * @param {Object} song
         */
         setSong = function (song) {
-            // if a song was defined before, set it now to null
             if (currentBuzzObject) {
                 currentBuzzObject.stop();
-                song.playing = null;
+                SongPlayer.currentSong.playing = null; // song.playing = null;
             }
-            // Otherwise, set it to the new song
             currentBuzzObject = new buzz.sound(song.audioUrl, {
                 formats: ['mp3'],
                 preload: true
             });
-            currentSong = song;
+            SongPlayer.currentSong = song;
         };
 
         /**
-        * @function playSong
+        * @function playSong (private function)
         * @desc Sets playing boolean to true and plays current song.
         * @param {Object} song
         */
@@ -59,29 +61,71 @@ var SongPlayer,
             song.playing = true;
         };
 
+        /**
+        * @function getSongIndex (private function)
+        * @desc identifies album song based on index.
+        * @param {Object} song
+        */
+        getSongIndex = function (song) {
+            return currentAlbum.songs.indexOf(song);
+        };
+
+        /**
+        * @desc holds current song, or is null (public attribute)
+        * @type {Object}
+        */
+        SongPlayer.currentSong = null;
+
+        /**
+        * @function play method (public function)
+        * @desc Plays music by leveraging private setSong and playSong methods.
+        * @type {Object}
+        */
         SongPlayer.play = function (song) {
-            // If there is a song playing that isn't the one clicked on, pause it
-            // Then set new song as current song and play it.
-            if (currentSong !== song) {
+            song = song || SongPlayer.currentSong;
+            if (SongPlayer.currentSong !== song) {
                 setSong(song);
                 playSong(song);
-            // If the song clicked on was paused, play it
-            } else if (currentSong === song) {
+            } else if (SongPlayer.currentSong === song) {
                 if (currentBuzzObject.isPaused()) {
                     playSong(song);
                 }
             }
         };
 
-        // Pause song
+        /**
+        * @function pause method (public function)
+        * @desc Pauses music.
+        * @type {Object}
+        */
         SongPlayer.pause = function (song) {
+            song = song || SongPlayer.currentSong;
             currentBuzzObject.pause();
             song.playing = false;
         };
+
+        /**
+        * @function previous method (public function)
+        * @desc indexes back a song.
+        * @type {Object}
+        */
+        SongPlayer.previous = function () {
+            currentSongIndex = getSongIndex(SongPlayer.currentSong);
+            currentSongIndex -= 1;
+            if (currentSongIndex < 0) {
+                currentBuzzObject.stop();
+                SongPlayer.currentSong.playing = null;
+            } else {
+                song = currentAlbum.songs[currentSongIndex];
+                setSong(song);
+                playSong(song);
+            }
+        };
+
         return SongPlayer;
     }
 
     angular
         .module('blocJams')
-        .factory('SongPlayer', SongPlayer);
+        .factory('SongPlayer', ['Fixtures', SongPlayer]);
 }());
