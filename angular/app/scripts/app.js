@@ -25,11 +25,6 @@
                 controller: 'CollectionCtrl as collection',
                 templateUrl: '/templates/collection.html'
             });
-            // .state('playerBar', {
-            //     url: '/playerBar',
-            //     controller: 'CollectionCtrl as collection',
-            //     templateUrl: '/templates/collection.html'
-            // });
     }
     angular
         .module('blocJams', ['ui.router'])
