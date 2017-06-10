@@ -1,5 +1,4 @@
 /*global angular*/
-/*global $*/
 
 var calculatePercent,
     offsetX,
@@ -28,7 +27,7 @@ var calculatePercent,
             replace: true,
             restrict: 'E',
             scope: { },
-            link: function (scope, element) {
+            link: function (scope, element, attributes) {
                 scope.value = 0;
                 scope.max = 100;
 
@@ -37,12 +36,16 @@ var calculatePercent,
                 percentString = function () {
                     value = scope.value;
                     max = scope.max;
-                    percent = (value / max) * 100;
+                    percent = value / max * 100;
                     return percent + '%';
                 };
 
                 scope.fillStyle = function () {
                     return {width: percentString()};
+                };
+
+                scope.thumbStyle = function () {
+                    return {left: percentString()};
                 };
 
                 scope.onClickSeekBar = function (event) {
@@ -53,6 +56,7 @@ var calculatePercent,
                 scope.trackThumb = function () {
                     $document.bind('mousemove.thumb', function (event) {
                         percent = calculatePercent(seekBar, event);
+                        // scope.value = percent * scope.max;
                         scope.$apply(function () {
                             scope.value = percent * scope.max;
                         });
