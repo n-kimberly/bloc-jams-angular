@@ -1,10 +1,3 @@
-// Create service using factory style declaration to produce instance of SongPlayer.
-// Method:                  SongPlayer
-// Private attributes:      currentAlbum, currentBuzzObject
-// Private functions:       setSong, playSong
-// Public attributes:       SongPlayer.currentSong
-// Public methods:          SongPlayer.play, SongPlayer.pause, SongPlayer.previous, SongPlayer.next
-
 /*global angular*/
 /*global buzz*/
 
@@ -31,7 +24,7 @@ var SongPlayer,
         currentAlbum = Fixtures.getAlbum();
 
         /**
-        * @desc Bbzz object audio file (private attribute)
+        * @desc buzz object audio file (private attribute)
         * @type {Object}
         */
         currentBuzzObject = null;
@@ -49,13 +42,11 @@ var SongPlayer,
                 formats: ['mp3'],
                 preload: true
             });
-
             currentBuzzObject.bind('timeupdate', function () {
                 $rootScope.$apply(function () {
                     SongPlayer.currentTime = currentBuzzObject.getTime();
                 });
             });
-
             SongPlayer.currentSong = song;
         };
 
@@ -70,15 +61,6 @@ var SongPlayer,
         };
 
         /**
-        * @function getSongIndex (private function)
-        * @desc identifies album song based on index
-        * @param {Object} song
-        */
-        getSongIndex = function (song) {
-            return currentAlbum.songs.indexOf(song);
-        };
-
-        /**
         * @function stopSong (private function)
         * @desc stops song and sets song.playing to null
         * @param {Object} song
@@ -89,16 +71,31 @@ var SongPlayer,
         };
 
         /**
+        * @function getSongIndex (private function)
+        * @desc identifies album song based on index
+        * @param {Object} song
+        */
+        getSongIndex = function (song) {
+            return currentAlbum.songs.indexOf(song);
+        };
+
+        /**
         * @desc holds current song, or is null (public attribute)
         * @type {Object}
         */
         SongPlayer.currentSong = null;
 
         /**
-        * @desc Current playback time (in seconds) of currently playing song
+        * @desc current playback time (in seconds) of currently playing song
         * @type {Number}
         */
         SongPlayer.currentTime = null;
+
+        /**
+        * @desc initial volume setting
+        * @type {Number}
+        */
+        SongPlayer.volume = 60;
 
         /**
         * @function play (public function)
@@ -171,6 +168,18 @@ var SongPlayer,
             if (currentBuzzObject) {
                 currentBuzzObject.setTime(time);
             }
+        };
+
+        /**
+        * @function setCurrentVolume
+        * @desc Set current volume % of currently playing song
+        * @param {Number} time
+        */
+        SongPlayer.setVolume = function (volume) {
+            if (currentBuzzObject) {
+                currentBuzzObject.setVolume(volume);
+            }
+            SongPlayer.volume = volume;
         };
 
         return SongPlayer;

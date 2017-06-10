@@ -6,12 +6,12 @@
             </a>
             <a class='play-pause'>
                 <span class='ion-play'
-                    ng-show="!playerBar.songPlayer.currentSong.playing"
-                    ng-click="playerBar.songPlayer.play()">
+                    ng-show='!playerBar.songPlayer.currentSong.playing'
+                    ng-click='playerBar.songPlayer.play()'>
                 </span>
                 <span class='ion-pause'
-                    ng-show="playerBar.songPlayer.currentSong.playing"
-                    ng-click="playerBar.songPlayer.pause()">
+                    ng-show='playerBar.songPlayer.currentSong.playing'
+                    ng-click='playerBar.songPlayer.pause()'>
                 </span>
             </a>
             <a class='next' ng-click='playerBar.songPlayer.next()'>
@@ -24,7 +24,7 @@
                 {{ playerBar.songPlayer.currentSong.title }}
             </h2>
             <h2 class='artist-song-mobile'>
-                {{ playerBar.songPlayer.currentSong.title }}
+                {{ playerBar.songPlayer.currentSong.title }} by {{ playerBar.albumData.artist}}
             </h2>
             <h3 class='artist-name'>
                 {{ playerBar.albumData.artist}}
@@ -33,15 +33,20 @@
                 <seek-bar
                     value = '{{ playerBar.songPlayer.currentTime }}'
                     max = '{{ playerBar.songPlayer.currentSong.duration }}'
-                    on-change = 'player.Bar.songPlayer.setCurrentTime(value)'>
+                    on-change = 'playerBar.songPlayer.setCurrentTime(value)'>
                 </seek-bar>
+                <!-- Oops. I had already added currentTime element in the checkpoint. -->
                 <div class='current-time'> {{ playerBar.songPlayer.currentTime }} </div>
                 <div class='total-time'> {{ playerBar.songPlayer.currentSong.duration }} </div>
             </div>
         </div>
         <div class='control-group volume'>
             <span class='icon ion-volume-high'></span>
-            <seek-bar></seek-bar>
+            <seek-bar
+                value = '{{ playerBar.SongPlayer.volume }}'
+                max = '100'
+                on-change = 'playerBar.songPlayer.setVolume(value)'>
+            </seek-bar>
         </div>
     </div>
 </section>
