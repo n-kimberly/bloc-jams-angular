@@ -3,12 +3,7 @@
 var calculatePercent,
     offsetX,
     seekBarWidth,
-    offsetXPercent,
-    percentString,
-    value,
-    max,
-    percent,
-    notifyOnChange;
+    offsetXPercent;
 
 (function () {
     'use strict';
@@ -28,10 +23,17 @@ var calculatePercent,
             replace: true,
             restrict: 'E',
             scope: {
-                // execute expression in context of parent scope
                 onChange: '&'
             },
             link: function (scope, element, attributes) {
+
+                var seekBar,
+                    percentString,
+                    value,
+                    max,
+                    percent,
+                    notifyOnChange;
+
                 scope.value = 0;
                 scope.max = 100;
 
